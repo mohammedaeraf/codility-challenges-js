@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>cyclic-rotation</title>
+</head>
+
+<body>
+    <script>
+        function solution(A, K) {
+            if (K == 0) return A;
+            if (A.length === 0) return [];
+            for (let i = 0; i < K; i++) {
+                const lastEl = A.pop();
+                A.unshift(lastEl);
+            }
+            return A;
+        }
+        const arr = solution([3, 8, 9, 7, 6], 5);
+        console.log(arr)
+    </script>
+</body>
+
+</html>
