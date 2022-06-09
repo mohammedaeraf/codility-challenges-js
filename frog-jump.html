@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Frog Jump (Time Complexity)</title>
+</head>
+
+<body>
+
+    <script>
+        // Efficient soln with O(1) time complexity
+        function solution(X, Y, D) {
+            let distance = Y - X;
+            let steps = Math.floor(distance / D);
+            return distance % D == 0 ? steps : ++steps;
+        }
+
+        const steps = solution(10, 85, 30);
+        console.log(steps)
+
+        // Efficiency not considered
+        // function solution(X, Y, D) {
+        //     let posn = X;
+        //     let steps = 0;
+
+        //     if (X === Y) return 0;
+
+        //     while (posn < Y) {
+        //         posn += D;
+        //         steps++;
+        //     }
+        //     return steps;
+        // }
+    </script>
+</body>
+
+</html>
