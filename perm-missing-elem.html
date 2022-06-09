@@ -1,0 +1,35 @@
+<script>
+    // 1 ... N+1
+    function solution(A) {
+
+        // if array is empty, missing element is 1 based on the range 1 to N+1
+        if (A.length == 0)
+            return 1;
+
+        // if has only one el, missing element is 1 or 2
+        if (A.length == 1) {
+            return (A[0] == 1) ? 2 : 1;
+        }
+
+        A.sort(function (a, b) { return a - b });
+
+        // if the array has more than one el and first element is not 1 then missing is 1
+        if (A[0] !== 1)
+            return 1;
+
+        for (let i = 0; i < A.length - 1; i++) {
+            let el = A[i];
+            let el2 = A[i + 1];
+            if (el2 !== el + 1) {
+                return ++el;
+            }
+        }
+
+        // if all of the elements are not successors N+1 is the missing element
+        return A.length + 1;
+
+    }
+
+    const missing = console.log(solution([1, 2, 3]))
+
+</script>
