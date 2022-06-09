@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>odd-occurrences-in-array</title>
+</head>
+
+<body>
+    <script>
+        // Soln uses sort function
+        function solution(A) {
+            A.sort(function (a, b) { return a - b });
+            for (let i = 0; i < A.length - 1; i = i + 2) {
+                if (A[i] !== A[i + 1]) {
+                    return A[i];
+                }
+            }
+            return A.pop();
+        }
+
+        const oddEl = solution([1, 2, 1, 2, 3, 9, 7, 6, 6, 3, 7])
+        console.log(oddEl);
+
+        // Efficient: Deletes matching element as soon as they are found
+        // function solution(A) {
+        //     let bFound = false;
+        //     for (let i = 0; i < A.length - 1; i++) {
+        //         const el = A[i];
+        //         for (let j = i + 1; j < A.length; j++) {
+        //             if (i === j) continue;
+        //             const el2 = A[j];
+        //             if (el === el2) {
+        //                 bFound = true;
+        //                 console.log("Found ->" + el + ' ' + el2);
+        //                 A.splice(j, 1);
+        //                 A.splice(i, 1); i--;
+        //                 console.log(A);
+        //                 break;
+        //             }
+        //         }
+        //         if (bFound === false) {
+        //             console.log("Not found ->" + el)
+        //             return el;
+        //         }
+        //         if (A.length === 1) return A.pop();
+        //     }
+        // }
+
+        // Not efficient - compares one with all remaining elements
+        // function solution(A) {
+        //     for (let i = 0; i < A.length; i++) {
+        //         let bFound = false;
+        //         const el = A[i];
+        //         for (let j = 0; j < A.length; j++) {
+        //             if (i === j) continue;
+        //             const el2 = A[j];
+        //             if (el === el2) {
+        //                 bFound = true;
+        //                 console.log('Found ==> ' + el + ' ' + el2);
+        //                 break;
+        //             }
+        //         }
+        //         if (bFound === false) {
+        //             console.log("Not found ->" + el)
+        //             return el;
+        //         }
+        //     }
+        // }
+    </script>
+</body>
+
+</html>
