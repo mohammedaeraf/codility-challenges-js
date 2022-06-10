@@ -1,0 +1,30 @@
+<script>
+    // https://app.codility.com/programmers/lessons/4-counting_elements/max_counters/
+    // Algo
+    // Performance 80%
+
+    function solution(N, A) {
+        // 1. Init Counters array with all 0s
+        let counters = new Array(N).fill(0);
+        let max = 0;
+
+        for (let i = 0; i < A.length; i++) {
+            // max counter operation
+            if (A[i] == N + 1) {
+                counters.fill(max);
+            } else { // increment operation
+                let index = A[i] - 1;
+                counters[index] += 1;
+                // chk for max
+                if (counters[index] > max) {
+                    max = counters[index]
+                }
+            }
+        }
+        return counters;
+    }
+
+    const A = [3, 4, 4, 6, 1, 4, 4];
+    const counters = solution(5, A);
+    console.log(counters)
+</script>
