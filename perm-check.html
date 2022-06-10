@@ -1,0 +1,31 @@
+<script>
+    // https://app.codility.com/programmers/lessons/4-counting_elements/perm_check/
+    // Algo
+    // Assume there's a permutation (set 1)
+    // Sort the array
+    // if any pair of consecutive elements are not successors set permutation = 0
+
+
+    function solution(A) {
+        //ec1 - single value
+        if (A.length == 1) {
+            return (A[0] == 1) ? 1 : 0;
+        }
+
+        A.sort((a, b) => { return a - b });
+
+        // ec2 - first element not 1
+        if (A[0] !== 1) return 0;
+
+        for (let i = 0; i < A.length - 1; i++) {
+            if (A[i + 1] - A[i] !== 1) {
+                return 0;
+            }
+        }
+        return 1;
+    }
+
+    const A = [4, 1, 3, 2];
+    const permutation = solution(A);
+    console.log(permutation)
+</script>
