@@ -1,0 +1,62 @@
+<script>
+    function solution(A) {
+        // remove negative elements as they needn't be checked
+        // A.filter((x) => x > 0);
+
+        // A.sort((a, b) => a - b);
+
+        // A = uniq(A);
+        A = uniq(A.filter(i => i > 0)).sort((a, b) => a - b);
+
+        let len = A.length;
+
+        // ec1 - first element not 1
+        if (A[0] !== 1) {
+            return 1;
+        }
+
+        if (A[len - 1] === len) { return len + 1; }
+
+        let i = 0;
+        let condition = true;
+        // check for missing element in between
+        while (condition) {
+            i++;
+            if (A[i - 1] !== i) {
+                condition = false;
+            }
+        }
+        return i;
+
+    }
+
+    function uniq(a) {
+        var seen = {};
+        var out = [];
+        var len = a.length;
+        var j = 0;
+        for (var i = 0; i < len; i++) {
+            var item = a[i];
+            if (seen[item] !== 1) {
+                seen[item] = 1;
+                out[j++] = item;
+            }
+        }
+        return out;
+    }
+
+    const arr = [1, 3, 6, 4, 1, 2]
+    const missing = solution(arr)
+    console.log(missing)
+
+
+</script>
+
+[4,5]
+[1]
+[0]
+[1, 3, 6, 4, 1, 2]
+[3]
+[-1,-3]
+[-5,0]
+[3,1,2]
