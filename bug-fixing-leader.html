@@ -1,0 +1,34 @@
+<script>
+    function solution(A) {
+        let n = A.length
+        let map = new Map();
+        let number = null;
+        A.forEach(el => {
+            number = map.get(el);
+            if (number == null)
+                map.set(el, 1)
+            else
+                map.set(el, ++number)
+        });
+        // console.log(map)
+        let maxKey = null
+        map.forEach((value, key) => {
+            if (maxKey === null) {
+                maxKey = key
+            }
+            else {
+                if (map.get(maxKey) < value)
+                    maxKey = key
+            }
+        })
+
+        if (map.get(maxKey) > parseInt(n / 2)) {
+            return maxKey
+        }
+        return -1
+    }
+
+    let arr = [3, 3, 3, 50, 1];
+    let result = solution(arr);
+    console.log(result)
+</script>
