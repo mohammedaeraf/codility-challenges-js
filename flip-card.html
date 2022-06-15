@@ -1,0 +1,34 @@
+<script>
+    // hint: The value of number on back is not important if it's different from front
+    // we need to only check if after flipping the no is different
+    // we just need to find the min number not present in the sequence when tried flipping
+    function solution(A, B) {
+        let len = A.length;
+        let max = A[0]
+        let minIndex = -1
+
+        for (let i = 0; i < len; i++) {
+            if (A[i] !== B[i]) {
+                if (A[i] < A[minIndex] || minIndex === -1) {
+                    minIndex = i
+                }
+            }
+            if (A[i] > max)
+                max = A[i]
+        }
+
+        return minIndex !== -1 ? A[minIndex] : ++max;
+
+    }
+
+    let A = [1, 2]
+    let B = [1, 2]
+    let result = solution(A, B);
+    console.log(result)
+    // Test Inputs
+    // [1, 2, 4, 3]  [1, 3, 2, 3]
+    // [8, 3, 4, 3]  [1, 7, 8, 6]
+    // [3,2,1,6,5] [4,2,1,3,3]
+    // [1,2] [1,2]
+
+</script>
