@@ -1,0 +1,58 @@
+<script>
+
+    function solution(A) {
+        var pos = 0;
+        var count = 0;
+
+        for (var i = 0; i < A.length; i++) {
+            console.log('--------------------')
+            console.log('i ' + i)
+            console.log('pos ' + pos)
+            console.log('el1 ' + A[pos])
+            console.log('el2 ' + A[i])
+
+            if (A[pos] == A[i]) { // if elements are same
+                count++;  // mimic pushing to stack 
+            } else {
+                count--;  // mimic popping from stack
+                if (count == 0) {  // if stack is empty
+                    console.log('inside if2')
+                    pos = i;        // set pos to current
+                    count++;        // mimic pushing to stack
+                }
+            }
+            console.log('pos ' + pos)
+        }
+
+        var equiLeaders = 0;
+        var leader = A[pos];
+        console.log('leader ' + leader)
+
+
+        var candidates = [];
+        var nonCandidates = [];
+
+        var candidateCount = 0;
+        var nonCandidateCount = 0;
+        for (var i = 0; i < A.length; i++) {
+            if (A[i] == leader) {
+                candidateCount++;
+            } else {
+                nonCandidateCount++;
+            }
+            candidates[i] = candidateCount;
+            nonCandidates[i] = nonCandidateCount;
+        }
+
+        for (var i = 0; i < A.length; i++) {
+            if (candidates[i] > nonCandidates[i] && ((nonCandidateCount - nonCandidates[i]) < (candidateCount - candidates[i]))) {
+                equiLeaders++;
+            }
+        }
+
+        return equiLeaders;
+    }
+    const arr = [4, 3, 4, 4, 4, 2]
+    const equiLeaders = solution(arr)
+    console.log(equiLeaders)
+</script>

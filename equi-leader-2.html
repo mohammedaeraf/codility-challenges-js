@@ -1,16 +1,6 @@
 <script>
     // https://codility.com/media/train/6-Leader.pdf (Part 3)
-    // Find the Dominator first
-    // Loop Array
-    //  For each index
-    //  Find candidates & not candidates
-    //  Push them in two separate arrays 
-    // Loop Array
-    //  For each index
-    //    Check if LHS has leader =>  candidates[i] > notCandidates[i]
-    //    Check if RHS has leader =>  (candidateCount - candidates[i]) > (notCandidateCount - notCandidates[i])
-    //    If leader found on both sides
-    //     equiLeader++
+    // Soln with 100% performance
     function solution(A) {
         let dominator = getCandidate(A)
 
@@ -47,36 +37,29 @@
 
     function getCandidate(A) {
         let n = A.length
-        let dominator = -1
         let counter = 0;
-
-        let stack = []
+        let value = -1;
 
         for (let i = 0; i < n; i++) {
-            if (i === 0 || stack.length === 0) {
-                stack.push(A[i])
-            }
-            else if (A[i] !== A[i - 1]) {
-                stack.pop();
+            if (counter == 0) {
+                counter++  // mimic adding el to stack
+                value = A[i];  // store the el in value so that it can be compared with next
             }
             else {
-                stack.push(A[i])
+                if (value != A[i]) {
+                    // mimic removing el from stack
+                    counter--
+                }
+                else {
+                    // mimic adding el to stack
+                    counter++
+                }
             }
         }
         let candidate = -1
-
-        if (stack.length > 0) {
-            candidate = stack.pop()
+        if (counter > 0) {
+            candidate = value
         }
-
-        // for (let i = 0; i < n; i++) {
-        //     if (candidate === A[i])
-        //         counter++
-        // }
-
-        // if (counter > n / 2) {
-        //     dominator = candidate;
-        // }
 
         return candidate;
     }
