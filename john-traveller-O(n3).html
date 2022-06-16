@@ -1,0 +1,45 @@
+<script>
+    // Algo
+    // Sort the 3 arrays
+    // Loop the 3 arrays
+    // For each combination of elements in B > A and elements in C > B, increment count
+    // If any element in B, found smaller than A break
+    // If any element in C, found smaller than B break
+
+    function solution(A, B, C) {
+
+        let len = A.length;
+        let count = 0;
+        let attempts = 0;
+        A.sort((a, b) => b - a)
+        B.sort((a, b) => b - a)
+        C.sort((a, b) => b - a)
+
+        for (let i = 0; i < len; i++) {
+            for (let j = 0; j < len; j++) {
+                if (A[i] >= B[j]) {
+                    break;
+                }
+                for (let k = 0; k < len; k++) {
+                    attempts++
+                    console.log(attempts)
+                    if (B[j] >= C[k]) {
+                        break;
+                    }
+                    if (B[j] > A[i] && C[k] > B[j]) count++
+                }
+            }
+        }
+        console.log('attempts ' + attempts)
+        return count > 1000000000 ? -1 : count;
+    }
+
+    let result = solution([29, 50], [61, 37], [37, 70])
+    console.log(result)
+
+
+    // Sample Inputs
+    // ([29, 50], [61, 37], [37, 70])
+    // ([29, 29], [61, 61], [70, 70])
+    // ([5], [5], [5])
+</script>
